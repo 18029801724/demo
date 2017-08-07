@@ -1,0 +1,80 @@
+<% include common/header.ejs %>
+    <h1><%= title %></h1>
+    
+
+
+<!--<form action="/list/view._id/edit" method="post">
+	标题<br>
+	<input type="text" name="title" id="title" value="<%=view.title%>"><br>
+    内容<br>
+    <textarea name="content" id="content">
+    	<%=view.content%>
+    </textarea><br>
+    <button type="submit">修改</button>
+</form>-->
+
+<form method="post">
+	标题<br>
+	<input type="text" name="title" id="title" value="<%=view.title%>"><br>
+    内容<br>
+    <textarea name="content" id="content">
+    	<%=view.content%>
+    </textarea><br>
+    <button onClick="potsData();return false">修改</button>
+</form>
+
+
+
+	<div class="modal fade" id="mymodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                 <div class="modal-header">
+                     <span class="close" data-dismiss="modal">&times;</span>
+                     <h4>消息</h4>
+                 </div>
+                 <div class="modal-body">
+                       我是模态框
+                 </div>
+                 <div class="modal-footer">
+					 <span>3秒后自动跳转到微博内容...</span>
+                           <button class="btn btn-info" data-dismiss='modal' >确定</button>               
+                 </div>
+             </div>
+        </div>
+	</div>
+
+<script type="text/javascript">
+
+
+
+function potsData(){
+	console.log('ok');
+	
+	$.post('/list/<%=view._id %>/edit',{
+		_id: '<%=view._id %>',
+		title: $('#title').val(),
+		content: $('#content').val()
+	}, function (data){
+		
+			$('.modal-body').html(data.msg);
+			$('#mymodal').modal('show')		
+		if (data.status) {
+
+			console.log(data);
+			setTimeout(function() {
+			window.location.href = '/list';
+			}, 3000);
+
+		}else{
+			// alert(data.msg);
+		}
+	});
+	
+}
+
+
+
+</script>
+
+
+<% include common/footer.ejs %>

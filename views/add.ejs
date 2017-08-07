@@ -1,0 +1,96 @@
+<% include common/header.ejs %>
+    <h1><%= title %></h1>
+    
+    <script type="text/javascript" >
+         $('#add').addClass('active')
+    </script>
+
+    <form method="post">
+        <div class="form-group">
+        <label for="title">标题:</label><br>
+        <input type="text" name=title  id='title' placeholder="请输入标题">
+        </div><br>
+        <div class="form-group">
+         <label for="content">内容:</label><br>
+        <textarea name="content" cols="50" rows="10" id='content' placeholder="请输入内容"></textarea>
+        </div><br>
+        <button type="submit" onclick="postData();return false"  class="btn btn-info" >发表</button>
+    </form>
+
+    <div class="modal fade" id="addmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                 <div class="modal-header">
+                     <span class="close" data-dismiss="modal">&times;</span>
+                     <h4>消息</h4>
+                 </div>
+                 <div class="modal-body">
+                       我是模态框
+                 </div>
+                 <div class="modal-footer">
+					 <span>3秒后自动跳转到微博列表...</span>
+                           <button class="btn btn-info" data-dismiss='modal' >确定</button>               
+                 </div>
+             </div>
+        </div>
+	</div>
+
+<script type="text/javascript" >
+
+       
+        
+
+
+
+
+ 
+
+    function postData(){
+	console.log('ok');
+
+	$.post('/add',{
+		// author:req.session.user._id,
+		title: $('#title').val(),
+		content: $('#content').val()
+	}, function (data){
+		
+			$('.modal-body').html(data.msg);
+			$('#addmodal').modal('show')		
+		if (data.status) {
+
+			console.log(data);
+			setTimeout(function() {
+			window.location.href = '/list';
+			}, 3000);
+
+		}else{
+			// alert(data.msg);
+		}
+	});
+	
+}
+
+     
+
+
+
+
+    //     return false,
+    //     $.post('/add',{
+    //         _id:req.param('_id'),
+    //         title:req.body.title,
+    //         content:req.body.content
+    //     },function(data){
+    //         $('.modal-body').html('data.msg')
+    //         $('#addmodal').modal('show')
+    //     })
+    // })
+
+    </script>
+
+ 
+
+
+ 
+
+<% include common/footer.ejs %>

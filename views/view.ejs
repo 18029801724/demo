@@ -1,0 +1,36 @@
+<% include common/header.ejs %>
+    <h1><%= title %></h1>
+    
+
+<table border="1px">
+
+<tr>
+	<th>_id</th>
+	<th>
+    用户名
+    </th>
+    <th>
+    密码
+    </th>
+</tr>
+
+<tr>
+	<td>
+    <%=user._id%>
+    </td>
+	<td>
+    <%=user.name%>
+    </td>
+    <td>
+    <%=user.password%>
+    </td>
+</tr>
+</table>
+<h1><%=view.title%></h1>
+
+<div class="content">
+<%=view.content%>
+
+</div>
+
+<% include common/footer.ejs %>
