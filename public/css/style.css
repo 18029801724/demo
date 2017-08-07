@@ -1,0 +1,33 @@
+body {
+  padding: 50px 0 50px 0;
+  font: 24px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+}
+
+a {
+  color: #00B7FF;
+}
+.modal-footer span{
+    font-size: 14px;
+}
+.myCarousel{
+	background: green;
+  width: 66%;
+  float: left;
+	margin:0 auto;
+
+}
+.ccc{
+  color: red;
+}
+.qa{
+  width: 33%;
+  float: right;
+
+}
+.clear{
+  clear: both;
+}
+.tab-pane p{
+  text-indent: 2em;
+}
